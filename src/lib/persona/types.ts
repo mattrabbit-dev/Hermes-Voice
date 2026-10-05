@@ -29,7 +29,7 @@ export type VoicePersona = {
 	voiceId: string | null;
 };
 
-export const DEFAULT_ASSISTANT_NAME = 'Hermes';
+export const DEFAULT_ASSISTANT_NAME = 'Eve';
 
 export const DEFAULT_PERSONA: VoicePersona = {
 	assistantName: DEFAULT_ASSISTANT_NAME,
