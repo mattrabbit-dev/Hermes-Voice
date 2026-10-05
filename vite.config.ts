@@ -13,6 +13,8 @@ export default defineConfig({
 
 			// adapter-node output dir (systemd / process expects build/index.js)
 			adapter: adapter({ out: 'build' }),
+			// The public app is mounted by the existing site at /eve.
+			paths: { base: '/eve' },
 
 			csp: {
 				mode: 'auto',

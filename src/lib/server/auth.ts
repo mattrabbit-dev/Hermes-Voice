@@ -86,6 +86,12 @@ export function extractVoiceKey(event: RequestEvent, body?: unknown): string | n
 		if (fromBody) return fromBody;
 	}
 
+	const proxyKey = nonEmptyString(event.request.headers.get('x-hermes-voice-proxy'));
+	const configuredProxyKey = readEnvTrimmed('VOICE_PROXY_KEY');
+	if (proxyKey && configuredProxyKey && safeEqualStr(proxyKey, configuredProxyKey)) {
+		return readEnvTrimmed('VOICE_URL_KEY');
+	}
+
 	const headerKey = nonEmptyString(event.request.headers.get('x-hermes-voice-key'));
 	if (headerKey) return headerKey;
 
