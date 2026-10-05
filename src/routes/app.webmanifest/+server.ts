@@ -1,4 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
+import { base } from '$app/paths';
 import { DEFAULT_PERSONA } from '$lib/persona/types';
 
 /**
@@ -22,16 +23,16 @@ export const GET: RequestHandler = async ({ locals }) => {
 		background_color: '#030a0c',
 		theme_color: '#030a0c',
 		icons: [
-			{ src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-			{ src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+			{ src: `${base}/icons/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
+			{ src: `${base}/icons/icon-512.png`, sizes: '512x512', type: 'image/png', purpose: 'any' },
 			{
-				src: '/icons/icon-maskable-192.png',
+				src: `${base}/icons/icon-maskable-192.png`,
 				sizes: '192x192',
 				type: 'image/png',
 				purpose: 'maskable'
 			},
 			{
-				src: '/icons/icon-maskable-512.png',
+				src: `${base}/icons/icon-maskable-512.png`,
 				sizes: '512x512',
 				type: 'image/png',
 				purpose: 'maskable'

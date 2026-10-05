@@ -1,4 +1,5 @@
 import { arrayBufferToBase64, PROVIDER_PCM_RATE, resampleLinear } from './pcm';
+import { base } from '$app/paths';
 
 export type CaptureHandle = {
 	stream: MediaStream;
@@ -22,7 +23,7 @@ export async function createMicCapture(ctx: AudioContext): Promise<CaptureHandle
 		}
 	});
 
-	await ctx.audioWorklet.addModule('/audio/pcm-capture-processor.js');
+	await ctx.audioWorklet.addModule(`${base}/audio/pcm-capture-processor.js`);
 
 	const source = ctx.createMediaStreamSource(stream);
 	const analyser = ctx.createAnalyser();
