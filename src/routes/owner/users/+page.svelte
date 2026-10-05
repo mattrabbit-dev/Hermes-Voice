@@ -83,7 +83,7 @@
 		loading = true;
 		errorCode = '';
 		try {
-			const res = await fetch('/api/owner/users', { credentials: 'same-origin' });
+			const res = await fetch(resolve('/api/owner/users'), { credentials: 'same-origin' });
 			const json = (await res.json().catch(() => null)) as null | {
 				ok?: boolean;
 				multiUser?: boolean;
@@ -107,7 +107,7 @@
 		message = '';
 		errorCode = '';
 		try {
-			const res = await fetch('/api/owner/multi-user/enable', {
+			const res = await fetch(resolve('/api/owner/multi-user/enable'), {
 				method: 'POST',
 				credentials: 'same-origin'
 			});
@@ -129,7 +129,7 @@
 		message = '';
 		errorCode = '';
 		try {
-			const res = await fetch('/api/owner/multi-user/disable', {
+			const res = await fetch(resolve('/api/owner/multi-user/disable'), {
 				method: 'POST',
 				credentials: 'same-origin'
 			});
@@ -156,7 +156,7 @@
 		message = '';
 		errorCode = '';
 		try {
-			const res = await fetch('/api/owner/users', {
+			const res = await fetch(resolve('/api/owner/users'), {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -263,7 +263,7 @@
 				}
 			}
 
-			const res = await fetch(`/api/owner/users/${editId}`, {
+			const res = await fetch(resolve(`/api/owner/users/${editId}`), {
 				method: 'PATCH',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -287,7 +287,7 @@
 		saving = true;
 		errorCode = '';
 		try {
-			const res = await fetch(`/api/owner/users/${u.id}`, {
+			const res = await fetch(resolve(`/api/owner/users/${u.id}`), {
 				method: 'PATCH',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -309,7 +309,7 @@
 		saving = true;
 		errorCode = '';
 		try {
-			const res = await fetch(`/api/owner/users/${u.id}`, {
+			const res = await fetch(resolve(`/api/owner/users/${u.id}`), {
 				method: 'DELETE',
 				credentials: 'same-origin'
 			});
@@ -329,7 +329,7 @@
 		message = '';
 		errorCode = '';
 		try {
-			const res = await fetch(`/api/owner/users/${u.id}/probe`, {
+			const res = await fetch(resolve(`/api/owner/users/${u.id}/probe`), {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },

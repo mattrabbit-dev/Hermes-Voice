@@ -38,7 +38,7 @@
 		if (!data.authenticated) return;
 		loading = true;
 		try {
-			const res = await fetch('/api/owner/health', { credentials: 'same-origin' });
+			const res = await fetch(resolve('/api/owner/health'), { credentials: 'same-origin' });
 			const json = (await res.json().catch(() => null)) as null | {
 				multiUser?: boolean;
 				provider?: string;

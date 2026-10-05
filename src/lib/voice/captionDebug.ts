@@ -9,6 +9,8 @@ export type CaptionDebugEvent = {
 	[key: string]: unknown;
 };
 
+import { base } from '$app/paths';
+
 const STORAGE_KEY = 'hermes-voice.captionDebug';
 const FLUSH_MS = 400;
 const MAX_QUEUE = 200;
@@ -43,7 +45,7 @@ export function createCaptionDebugger() {
 		const batch = queue;
 		queue = [];
 		try {
-			await fetch('/api/debug/captions', {
+			await fetch(`${base}/api/debug/captions`, {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },

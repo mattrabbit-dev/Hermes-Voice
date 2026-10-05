@@ -4,6 +4,7 @@
  * cookie auth applies, not a bare <EventSource> tag.
  */
 import { createSseParseState, pushSseChunk, type SseFrame } from '$lib/sseParse';
+import { base } from '$app/paths';
 import type { PublicTask, TaskBusEvent } from '$lib/server/tasks/types';
 
 const TASK_BUS_EVENT_TYPES = new Set<string>([
@@ -115,7 +116,7 @@ export function createTaskStream(opts: {
 		const ac = new AbortController();
 		controller = ac;
 		try {
-			const res = await fetch('/api/tasks/stream', {
+			const res = await fetch(`${base}/api/tasks/stream`, {
 				method: 'GET',
 				credentials: 'same-origin',
 				headers: { Accept: 'text/event-stream' },

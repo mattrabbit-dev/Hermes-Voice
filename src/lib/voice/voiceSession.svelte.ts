@@ -1,4 +1,5 @@
 import { pulse } from '$lib/haptics';
+import { base } from '$app/paths';
 import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 import { getLocale, t, type MessageKey, type VoiceErrorCode } from '$lib/i18n';
 import { DEFAULT_PERSONA, type VoicePersona } from '$lib/persona/types';
@@ -1409,7 +1410,7 @@ export function createVoiceDemo(
 	async function mintSession(): Promise<MintResult> {
 		let res: Response;
 		try {
-			res = await fetch('/api/session', {
+			res = await fetch(`${base}/api/session`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				credentials: 'same-origin',
@@ -1469,7 +1470,7 @@ export function createVoiceDemo(
 			await playback?.whenIdle();
 			if (destroyed || myTurn !== turnId) return;
 
-			const res = await fetch('/api/hermes', {
+			const res = await fetch(`${base}/api/hermes`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -1660,7 +1661,7 @@ export function createVoiceDemo(
 		background: boolean
 	) {
 		try {
-			const res = await fetch('/api/tasks/dispatch', {
+			const res = await fetch(`${base}/api/tasks/dispatch`, {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -1728,7 +1729,7 @@ export function createVoiceDemo(
 	async function clearTaskQueue(callId: string, myTurn: number) {
 		let output: string;
 		try {
-			const res = await fetch('/api/tasks/clear', {
+			const res = await fetch(`${base}/api/tasks/clear`, {
 				method: 'POST',
 				credentials: 'same-origin'
 			});
@@ -1774,7 +1775,7 @@ export function createVoiceDemo(
 		spoken?: boolean
 	): Promise<{ ok?: boolean; claimed?: PublicTask[]; count?: number } | null> {
 		try {
-			const res = await fetch('/api/tasks/ack', {
+			const res = await fetch(`${base}/api/tasks/ack`, {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -2110,7 +2111,7 @@ export function createVoiceDemo(
 	/** User cancels one queued/running task from the orbit card. */
 	async function cancelTask(id: string): Promise<boolean> {
 		try {
-			const res = await fetch('/api/tasks/cancel', {
+			const res = await fetch(`${base}/api/tasks/cancel`, {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -2132,7 +2133,7 @@ export function createVoiceDemo(
 	 * through the normal report path like any other background task. */
 	async function dispatchApproved(approval: PendingApproval): Promise<boolean> {
 		try {
-			const res = await fetch('/api/tasks/dispatch', {
+			const res = await fetch(`${base}/api/tasks/dispatch`, {
 				method: 'POST',
 				credentials: 'same-origin',
 				headers: { 'Content-Type': 'application/json' },
@@ -3022,7 +3023,7 @@ export function createVoiceDemo(
 
 		greetingPrefetch = (async () => {
 			try {
-				const res = await fetch('/api/greeting', {
+				const res = await fetch(`${base}/api/greeting`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					credentials: 'same-origin',
@@ -3231,7 +3232,7 @@ export function createVoiceDemo(
 			return;
 		}
 		const turns = transcript.takeTurns();
-		void fetch('/api/memory-review', {
+		void fetch(`${base}/api/memory-review`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'same-origin',
