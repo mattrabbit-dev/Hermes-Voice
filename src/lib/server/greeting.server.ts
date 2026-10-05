@@ -33,7 +33,7 @@ export function buildGreetingPrompt(opts: {
 		`${who} is opening a new voice session with you, ${opts.assistantName} — greet ${who} warmly.`,
 		'Vary your phrasing every time — never repeat a stock opening. Reference a previous',
 		'conversation if you remember one worth mentioning; otherwise ask a simple, easy opening',
-		`question. Reply in ${uiLang}. One or two short sentences. Plain text only — no preamble,`,
+		`Reply in Czech. One or two short sentences. Plain text only — no preamble,`,
 		'no quotation marks, no markdown, no emoji: this will be spoken aloud by a text-to-speech voice.'
 	].join(' ');
 }
