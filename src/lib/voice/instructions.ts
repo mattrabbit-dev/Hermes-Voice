@@ -125,6 +125,12 @@ ${asyncTasksEnabled ? ASYNC_DELEGATION_PARAGRAPH : LEGACY_DELEGATION_PARAGRAPH}`
 
 	const extra: string[] = [];
 
+	if (asyncTasksEnabled) {
+		extra.push(
+			'For a direct request to check current Fakturovač invoices, overdue invoices, or invoice status, do not use background mode and do not create a script. Delegate it synchronously with background=false and instruct Hermes Agent to use the persistent Fakturovač browser profile and its invoicing skill.'
+		);
+	}
+
 	if (persona.addressName) {
 		let addr = `Always address the user as ${persona.addressName}.`;
 		if (persona.formalAddress) {

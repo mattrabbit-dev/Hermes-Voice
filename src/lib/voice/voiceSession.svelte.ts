@@ -1649,6 +1649,12 @@ export function createVoiceDemo(
 		}
 	}
 
+	function isReadOnlyFakturovacRequest(request: string): boolean {
+		const text = request.toLocaleLowerCase('cs-CZ');
+		if (!/(fakturova|faktur|splatnost|po splatnosti)/.test(text)) return false;
+		return !/(odeslat|poslat|vystavit|vystav|upravit|změnit|zmenit|smazat|zaplatit|send|create)/.test(text);
+	}
+
 	/** POST /api/tasks/dispatch — quick lookups may resolve inline; slower work returns a
 	 * queued acknowledgement. Every path (success, server-side failure, network failure,
 	 * timeout) MUST reach completeToolCall(), or the model's turn hangs forever — mirrors
@@ -2472,6 +2478,15 @@ export function createVoiceDemo(
 					'Could not start that — missing request. Tell the user it did not go through.',
 					myTurn
 				);
+				return;
+			}
+			if (isReadOnlyFakturovacRequest(request)) {
+				// The detached task runner may not have access to the persistent Chromium
+				// profile. Keep read-only Fakturovac lookups on the synchronous bridge, which
+				// has the same browser context as the working voice request path.
+				outstandingToolCalls.delete(callId);
+				beginHermesWorkingUi(myTurn);
+				void runHermesBridge(callId, request, myTurn);
 				return;
 			}
 			void dispatchTask(callId, request, title, myTurn, background);
