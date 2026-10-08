@@ -15,6 +15,7 @@
 	import AmbientMode from './AmbientMode.svelte';
 	import ApprovalCard from './ApprovalCard.svelte';
 	import ControlCenter from './ControlCenter.svelte';
+import CommandCenter from './CommandCenter.svelte';
 	import MicPrimer from './MicPrimer.svelte';
 	import ResultCards from './ResultCards.svelte';
 	import TaskOrbit from './TaskOrbit.svelte';
@@ -472,6 +473,7 @@
 	onpointerup={onStageUp}
 >
 	<div class="stage-bg" inert={overlayOpen}>
+		<CommandCenter />
 		<div class="glow-field" aria-hidden="true"></div>
 		<canvas class="viz" bind:this={canvasEl} aria-hidden="true"></canvas>
 
