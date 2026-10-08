@@ -94,6 +94,11 @@
 		z-index: 1;
 		pointer-events: none;
 		overflow: hidden;
+		display: grid;
+		grid-template-columns: 20% 60% 20%;
+		grid-template-rows: repeat(3, minmax(0, 1fr));
+		gap: clamp(0.6rem, 1.3vw, 1.25rem);
+		padding: clamp(5.5rem, 10vh, 7rem) clamp(0.75rem, 2vw, 2rem) clamp(7.5rem, 14vh, 10rem);
 		color: #1c1917;
 		font-family: 'DM Sans', Inter, system-ui, sans-serif;
 	}
@@ -131,9 +136,11 @@
 	}
 
 	.widget {
-		position: absolute;
-		width: 12.5rem;
-		min-height: 7.2rem;
+		position: relative;
+		align-self: stretch;
+		width: auto;
+		min-height: 0;
+		height: 100%;
 		padding: 0.85rem 0.95rem 0.75rem;
 		border: 1px solid rgba(28, 25, 23, 0.13);
 		border-radius: 1.2rem;
@@ -152,12 +159,12 @@
 		box-shadow: 0 24px 65px rgba(76, 39, 20, 0.13), 0 0 34px rgba(255, 106, 61, 0.08);
 	}
 
-	.widget--finance { left: clamp(1rem, 5vw, 6rem); top: 16%; }
-	.widget--communication { left: clamp(1rem, 7vw, 9rem); bottom: 18%; }
-	.widget--calendar { right: clamp(1rem, 5vw, 6rem); top: 16%; }
-	.widget--projects { right: clamp(1rem, 7vw, 9rem); bottom: 18%; }
-	.widget--runtime { left: 24%; top: 8%; }
-	.widget--access { right: 24%; top: 8%; }
+	.widget--finance { grid-column: 1; grid-row: 1; }
+	.widget--communication { grid-column: 1; grid-row: 2; }
+	.widget--projects { grid-column: 1; grid-row: 3; }
+	.widget--calendar { grid-column: 3; grid-row: 1; }
+	.widget--runtime { grid-column: 3; grid-row: 2; }
+	.widget--access { grid-column: 3; grid-row: 3; }
 
 	.widget__topline,
 	.widget__footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
@@ -182,12 +189,11 @@
 	@keyframes status-pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
 
 	@media (max-width: 900px) {
-		.widget { width: 10.5rem; min-height: 6.3rem; padding: 0.7rem; border-radius: 1rem; }
-		.widget--runtime, .widget--access { top: 5%; }
-		.widget--finance, .widget--calendar { top: 19%; }
-		.widget--communication, .widget--projects { bottom: 16%; }
-		.widget--runtime { left: 1rem; }
-		.widget--access { right: 1rem; }
+		.command-center { grid-template-columns: 22% 56% 22%; gap: 0.5rem; padding-inline: 0.45rem; }
+		.widget { width: auto; min-height: 0; padding: 0.7rem; border-radius: 1rem; }
+		.widget__body h2 { font-size: 1rem; }
+		.widget__body p { font-size: 0.62rem; }
+		.widget__label, .widget__status, .widget__footer { font-size: 0.46rem; }
 	}
 
 	@media (max-width: 680px) {

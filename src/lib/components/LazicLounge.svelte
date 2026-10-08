@@ -477,20 +477,6 @@ import CommandCenter from './CommandCenter.svelte';
 		<div class="glow-field" aria-hidden="true"></div>
 		<canvas class="viz" bind:this={canvasEl} aria-hidden="true"></canvas>
 
-		<button
-			type="button"
-			class="control-handle"
-			aria-label={pt('control.open')}
-			aria-expanded={controlOpen}
-			onclick={() => (controlOpen = true)}
-		>
-			<span class="control-handle__bar" aria-hidden="true"></span>
-			<span class="control-handle__meta">
-				{demo.talkMode === 'handsfree' ? pt('mode.handsfree') : pt('mode.ptt')} · {getLocale().toUpperCase()}
-				· {PROVIDER_LABELS[demo.provider ?? provider ?? 'xai']}
-			</span>
-		</button>
-
 		{#if demo.captionLines.length > 0 || demo.captionUserEcho || demo.captionPhase !== 'hidden'}
 			<div
 				class="captions"
@@ -630,6 +616,19 @@ import CommandCenter from './CommandCenter.svelte';
 				</button>
 			</div>
 			<span class="home-bar" aria-hidden="true"></span>
+			<button
+				type="button"
+				class="control-handle"
+				aria-label={pt('control.open')}
+				aria-expanded={controlOpen}
+				onclick={() => (controlOpen = true)}
+			>
+				<span class="control-handle__bar" aria-hidden="true"></span>
+				<span class="control-handle__meta">
+					{demo.talkMode === 'handsfree' ? pt('mode.handsfree') : pt('mode.ptt')} · {getLocale().toUpperCase()}
+					· {PROVIDER_LABELS[demo.provider ?? provider ?? 'xai']}
+				</span>
+			</button>
 		</div>
 	</div>
 
@@ -785,31 +784,29 @@ import CommandCenter from './CommandCenter.svelte';
 	}
 
 	.control-handle {
-		position: absolute;
+		position: static;
 		z-index: 5;
-		top: max(0.6rem, env(safe-area-inset-top));
-		left: 50%;
-		translate: -50% 0;
+		translate: none;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.35rem;
-		min-height: 2.75rem;
-		padding: 0.2rem 1rem;
+		gap: 0.25rem;
+		min-height: 1.9rem;
+		padding: 0.15rem 1rem 0;
 		border: none;
 		background: transparent;
 		color: var(--muted);
 		font: inherit;
-		font-size: 0.74rem;
+		font-size: 0.68rem;
 		letter-spacing: 0.08em;
 		cursor: pointer;
 	}
 
 	.control-handle__bar {
 		width: 2.75rem;
-		height: 5px;
+		height: 4px;
 		border-radius: 3px;
-		background: rgba(202, 253, 255, 0.28);
+		background: rgba(255, 106, 61, 0.28);
 		transition: background 0.15s ease;
 	}
 
