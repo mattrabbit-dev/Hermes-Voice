@@ -15,13 +15,13 @@ export const GET: RequestHandler = async ({ locals }) => {
 	const persona = locals.principal?.persona ?? DEFAULT_PERSONA;
 
 	const manifest = {
-		name: `${persona.assistantName} Voice`,
+		name: `${persona.assistantName} · Matoušova platforma`,
 		short_name: persona.assistantName,
-		description: `Talk with ${persona.assistantName}`,
+		description: `Osobní platforma Matouše Králíka — ${persona.assistantName}`,
 		display: 'standalone',
 		orientation: 'portrait',
-		background_color: '#030a0c',
-		theme_color: '#030a0c',
+		background_color: '#f5f0e8',
+		theme_color: '#f5f0e8',
 		icons: [
 			{ src: `${base}/icons/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
 			{ src: `${base}/icons/icon-512.png`, sizes: '512x512', type: 'image/png', purpose: 'any' },

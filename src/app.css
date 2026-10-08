@@ -40,5 +40,52 @@ html,
 body {
 	margin: 0;
 	min-height: 100%;
-	background: #030a0c;
+	background: #f5f0e8;
+}
+
+:root {
+	--mk-cream: #f5f0e8;
+	--mk-cream-2: #efe8dc;
+	--mk-ink: #1c1917;
+	--mk-ink-2: #3b3633;
+	--mk-muted: #6b625b;
+	--mk-orange: #ff6a3d;
+	--mk-orange-2: #ff9a44;
+	--mk-pink: #f4456a;
+	--mk-display: 'Fraunces', 'Instrument Serif', Georgia, serif;
+	--mk-sans: 'DM Sans', Inter, system-ui, sans-serif;
+	--mk-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Matouš Králík platform skin: warm paper, ink, and sunset signal colors. */
+body {
+	font-family: var(--mk-sans);
+}
+
+.lounge-stage {
+	--ink: var(--mk-ink) !important;
+	--muted: var(--mk-muted) !important;
+	--cyan: var(--mk-cream-2) !important;
+	--accent: var(--mk-orange) !important;
+	color: var(--mk-ink) !important;
+	font-family: var(--mk-sans) !important;
+	background:
+		radial-gradient(circle at 72% 18%, rgba(255, 154, 68, .22), transparent 28%),
+		radial-gradient(circle at 22% 82%, rgba(244, 69, 106, .12), transparent 30%),
+		linear-gradient(135deg, var(--mk-cream) 0%, #fbf8f2 52%, var(--mk-cream-2) 100%) !important;
+}
+
+.lounge-stage .glow-field {
+	background:
+		radial-gradient(circle at 50% 46%, rgba(255, 106, 61, .16), transparent 42%),
+		radial-gradient(circle at 30% 70%, rgba(255, 154, 68, .10), transparent 35%),
+		radial-gradient(circle at 70% 30%, rgba(244, 69, 106, .08), transparent 32%) !important;
+}
+
+.lounge-stage h1,
+.lounge-stage h2,
+.lounge-stage h3,
+.lounge-stage .brand,
+.lounge-stage [class*='wordmark'] {
+	font-family: var(--mk-display) !important;
 }
